@@ -1,32 +1,46 @@
 opcoes_permitidas = ['1', '2', '3', '4']
 class Pessoa:
-    def __init__(self, lado):
-        self.tamanho_lado = lado
-        self.
-    def trocaLado(self, lado):
-        self.tamanho_lado = lado
-        print(f'tamanho do lado trocado para {self.tamanho_lado} com sucesso!')
-    def mostraTamanhoLado(self):
-        return self.tamanho_lado
-    def calcularArea(self):
-        self.area = float(self.tamanho_lado)**2
-        return self.area
-    def
+    def __init__(self, nome, idade, peso, altura):
+        self.nome = nome
+        self.idade = int(idade)
+        self.altura = float(altura)
+        self.peso = float(peso)
+    def envelhecer(self):
+        self.idade += 1
+        if self.idade < 21:
+            self.altura += 0.005
+        self.mostrarAtributos()
+    def engordar(self, peso):
+        self.peso += float(peso)
+        self.mostrarAtributos()
+    def emagrecer(self, peso):
+        self.peso -= float(peso)
+        self.mostrarAtributos()
+    def crescer(self, altura):
+        self.altura += float(altura)
+        self.mostrarAtributos()
+    def mostrarAtributos(self):
+        print(f'nome: {self.nome}\nidade: {self.idade} anos\naltura: {self.altura}m\npeso: {self.peso}kg')
 
-quadrado = Pessoa(30)
+pessoa = Pessoa('Joao', 15, 65.25, 1.55)
 while True:
     print('Voce deseja:')
-    print('1 - Trocar tamanho do lado')
-    print('2 - Mostrar tamanho do lado')
-    print('3 - Calcular Area')
+    print('1 - Envelhecer')
+    print('2 - Engordar')
+    print('3 - Emagrecer')
+    print('4 - Crescer')
     opcao = input()
     if opcao in opcoes_permitidas:
         if opcao == '1':
-            lado = input('Qual o tamanho do lado desejado?')
-            quadrado.trocaLado(lado)
+            pessoa.envelhecer()      
         elif opcao == '2':
-            print(quadrado.mostraTamanhoLado())
+            peso = input('Qual o aumento de peso?')
+            pessoa.engordar(peso=peso)
         elif opcao == '3':
-            print(quadrado.calcularArea())
+            peso = input('Qual o decrescimo de peso?')
+            pessoa.emagrecer(peso=peso)
+        elif opcao == '4':
+            altura = input('Qual o aumento de altura?')
+            pessoa.crescer(altura=altura)
 
 
